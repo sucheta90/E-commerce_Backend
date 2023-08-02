@@ -3,6 +3,7 @@ const { Tag, Product, ProductTag } = require("../../models");
 
 // The `/api/tags` endpoint
 
+//Shows all tags including the associated products and product_tag
 router.get("/", async (req, res) => {
   try {
     const tags = await Tag.findAll({
@@ -13,7 +14,7 @@ router.get("/", async (req, res) => {
     res.json(err);
   }
 });
-
+//Shows a specific tag by :id also includes the associated products and product_tag
 router.get("/:id", async (req, res) => {
   let id = req.params.id;
   try {
@@ -30,6 +31,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+//Creates a new tag
 router.post("/", async (req, res) => {
   try {
     const newTag = await Tag.create(req.body);
@@ -39,9 +41,9 @@ router.post("/", async (req, res) => {
       .status(500)
       .json("Couldn't create a tag at this time! Please try again");
   }
-  // create a new tag
 });
 
+// Updates a tag by it's :id
 router.put("/:id", async (req, res) => {
   let id = req.params.id;
   try {
@@ -54,9 +56,9 @@ router.put("/:id", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-  // update a tag's name by its `id` value
 });
 
+// Deletes a tag by :id
 router.delete("/:id", async (req, res) => {
   let id = req.params.id;
   try {
@@ -78,7 +80,6 @@ router.delete("/:id", async (req, res) => {
   } catch (err) {
     res.status(500).json(err);
   }
-  // delete on tag by its `id` value
 });
 
 module.exports = router;
