@@ -64,11 +64,11 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const categoryId = req.params.id;
-    const products = await Product.destroy({
-      where: {
-        category_id: categoryId,
-      },
-    });
+    // const products = await Product.destroy({
+    //   where: {
+    //     category_id: categoryId,
+    //   },
+    // });
     // console.log(products);
     const categoryToDelete = await Category.destroy({
       where: {
